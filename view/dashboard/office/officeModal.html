@@ -1,0 +1,52 @@
+<md-dialog aria-label="Modal PDV" style="border-radius:0px" ng-cloak>
+  <form name="qrcommandForm">
+    <md-toolbar style="background: #21BDBD;color:white">
+      <div class="md-toolbar-tools">
+        <h2>{{actionTitle}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <img src="/assets/images/icons/delete_white.png" style="width:25px">
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-progress-linear md-mode="indeterminate" ng-show="loading"></md-progress-linear>
+    <md-dialog-content layout-padding style="width:500px;padding:20px;padding-bottom:0px" layout="row">
+        <div flex>
+            <md-list-item ng-repeat="firetruck in modalSend.firetrucks" ng-click="goToPerson(person.name, $event)" class="noright" style="height: 80px">
+              <div style="width: 60px; height: 60px; border: 1px solid #cacaca; border-radius: 50%; margin-right: 10px">
+                <img ng-src="assets/images/firetruckColor.png" class="officeIconTruck" />
+              </div>
+              <div layout="column">
+                <div class="line20Modal">
+                  Nome: <b>{{ firetruck.name }}</b>
+                </div>
+                <div class="line20Modal">
+                  Tipo: <b> Assistente</b>
+                </div>
+                <div class="line20Modal">
+                  <div class="officeDistanceTruck">
+                    Distância: 
+                      <span ng-if="firetruck.distance < 1000">{{firetruck.distance | number: 0}}m</span>
+                      <span ng-if="firetruck.distance >= 1000">{{firetruck.distance/1000 | number: 2}}km</span>
+                  </div>
+                </div>
+              </div>
+              <md-checkbox class="md-secondary" ng-model="firetruck.busy" ng-change="changeStatus(firetruck)"></md-checkbox>
+            </md-list-item>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      
+      <md-button ng-disabled="loading" ng-click="cancel()" >
+       Fechar
+      </md-button>
+
+      <md-button ng-disabled="loading" ng-click="done()" style="color: #3b68a2">
+       {{actionButton}}
+      </md-button>
+
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+

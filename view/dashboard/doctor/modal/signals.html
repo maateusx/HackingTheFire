@@ -1,0 +1,117 @@
+<md-dialog aria-label="Informações" style="border-radius:0px" ng-cloak>
+  <form name="qrcommandForm">
+    <md-toolbar style="background: #F44336;color:white;">
+      <div class="md-toolbar-tools">
+        <h2>Informações</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="close()">
+          <img src="/assets/images/icons/delete_white.png" style="width:25px">
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-progress-linear md-mode="indeterminate" ng-show="loading"></md-progress-linear>
+    <md-dialog-content layout-padding style="width:500px;padding:20px;padding-bottom:0px" layout="column">
+      <h2>Dados da Ocorrência:</h2>
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Nome</label>
+            <input ng-model="selectedOccurenceMedic.user.name" type="text">
+
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Telefone</label>
+            <input ng-model="selectedOccurenceMedic.user.phone" type="text">
+          </md-input-container>
+        </div>
+      </div>
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="person" class="occurrencyIcon"></ng-md-icon>Genêro</label>
+            <md-select ng-model="selectedOccurenceMedic.user.gender">
+              <md-option value="">Não Especificado</md-option>
+              <md-option value="FEMININO">Feminino</md-option>
+              <md-option value="MASCULINO">Masculino</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Idade</label>
+            <input ng-model="selectedOccurenceMedic.user.age" type="text">
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="healing" class="occurrencyIcon"></ng-md-icon>Gravidade</label>
+            <md-select ng-model="selectedOccurenceMedic.priority">
+              <md-option value="">Não Especificado</md-option>
+              <md-option value="0">Grau 0</md-option>
+              <md-option value="1">Grau 1</md-option>
+              <md-option value="2">Grau 2</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex="60" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Descrição do Ocorrido</label>
+            <textarea ng-model="selectedOccurenceMedic.user.complaint" rows="4"></textarea>
+          </md-input-container>
+        </div>
+        <div flex="40" class="occurencyInputs">
+          <md-input-container class="md-block">
+            <label>Comentários</label>
+            <textarea ng-model="selectedOccurenceMedic.comment" rows="4"></textarea>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Pressão</label>
+            <input ng-model="selectedOccurenceMedic.user.vitalSigns.pressao.value" type="text">
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Temperatura</label>
+            <input ng-model="selectedOccurenceMedic.user.vitalSigns.temp.value" type="text">
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Frequência Cardíaca</label>
+            <input ng-model="selectedOccurenceMedic.user.vitalSigns.heart.value" type="text">
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Saturação de Oxigênio</label>
+            <input ng-model="selectedOccurenceMedic.user.vitalSigns.oxigen.value" type="text">
+          </md-input-container>
+        </div>
+      </div>
+
+      <div class="occurencyInputs">
+        <md-input-container class="md-block">
+          <label>Demais anaotações</label>
+          <textarea ng-model="selectedOccurenceMedic.anatacao" rows="4"></textarea>
+        </md-input-container>
+      </div>
+      
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="close()" style="color: #fff; background-color: #F44336">Fechar</md-button>
+      <md-button ng-click="update()" style="color: #fff; background-color: #F44336">Salvar</md-button> 
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+

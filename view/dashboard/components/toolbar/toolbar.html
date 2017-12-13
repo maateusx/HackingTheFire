@@ -1,0 +1,14 @@
+<md-toolbar class="toolbar-style" style="box-shadow: 16px -4px 20px 0px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); background-color: #fff; color: #C62828; z-index: 11;">
+	<div class="md-toolbar-tools">
+
+		<md-button ng-show="$state.current.views.sidebar != null " hide-gt-sm ng-click="openSidebar()" class="md-icon-button" aria-label="Settings">
+          <img src="assets/images/menu.png" class="toolbarStyleMenu" style="height: 20px">
+        </md-button>
+
+		<div  layout="row" layout-align="center center" class="toolbarTitleStyle">
+			<div flex>{{toolbarTitle}}</div>
+     	</div>
+
+	</div>
+</md-toolbar>
+

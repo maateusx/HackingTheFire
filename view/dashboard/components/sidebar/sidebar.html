@@ -1,0 +1,29 @@
+<md-sidenav
+  class="md-sidenav-left h100 bgTheme"
+  md-component-id="left"
+  md-is-locked-open="$mdMedia('gt-sm')"
+  md-disable-backdrop
+  md-whiteframe="4" style="width: 100%">
+
+  <md-toolbar class="sidebarMD-toolbar smallElevation bgTheme" style="border-bottom: 1px solid #bbb; z-index: 100;">
+    <div class="md-toolbar-tools cursor-pointer bgTheme" ng-click="$state.go('home')" align="center">
+      
+      <img src="assets/images/brasao.PNG" width="50">
+      <h5 style="color: #C62828; margin-left: 8px;">
+        Bombeiros - MG
+      </h5>
+    </div>
+  </md-toolbar>
+
+  <md-content class="sidebarMd-content bgTheme" ng-controller="sidebarController">
+    <md-list  ng-cloak>
+      <md-list-item ng-repeat="sidebar in sidebarContents" ng-click="sidebarExecute($index); openSidebar();" title="{{sidebar.name}}">
+        <div class="sidebar-item {{$state.current.name == sidebar.state? 'sidebar-selected-item':''}}" layout="row" layout-align="start center">
+          <ng-md-icon icon="{{sidebar.icon}}" style="fill: {{$state.current.name == sidebar.state? '#fff':'#C62828'}}; margin-top: 15px;"></ng-md-icon>
+          <div style="margin-left: 10px;"><b>{{sidebar.name}}</b></div>
+        </div>
+        
+      </md-list-item>
+    </md-list>
+  </md-content>
+</md-sidenav>

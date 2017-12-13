@@ -1,0 +1,23 @@
+<div layout="column" layout-align="center center" layout-fill="layout-fill" style="background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center;"> 
+  <div class="loginBox md-whiteframe-z1" layout="column" style="width: 320px;">
+    <md-toolbar style=" background-color: #C62828; border-top-right-radius: 6px; border-top-left-radius: 6px;" layout-align="center center">
+      <h2 class="md-toolbar-tools"><span>Bombeiros - Login</span></h2>
+    </md-toolbar>
+    <md-content class="md-padding" layout="column">
+      <div align="center">
+        <img src="assets/images/brasao.PNG" style="width: 100px">
+      </div>
+      <md-input-container>
+        <label style="color: #EF9A9A">Usuario</label>
+        <input type="text" ng-model="credentials.username" ng-enter="login()" style="color: #222; border-color: #E57373; margin-bottom: 0px;" />
+      </md-input-container>
+      <md-input-container style="margin-top: 0px; padding-top: 0px;">
+        <label style="color: #EF9A9A">Senha</label>
+        <input type="password" ng-model="credentials.password" ng-enter="login()" style="color: #222; border-color: #E57373"/>
+      </md-input-container>
+      <div layout="row" layout-align="center center" style="padding-top:20px">
+        <md-button ng-click="login()" class="md-raised md-primary" style="width: 100%; background-color: #E53935">Entrar</md-button>
+      </div>
+    </md-content>
+  </div>
+</div>

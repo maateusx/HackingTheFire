@@ -1,0 +1,9 @@
+<md-content class="h100">
+	<section layout="row" class="h100">
+	  <div ng-show="$state.current.views.sidebar != null" ng-include="'view/dashboard/components/sidebar/sidebar.html'" style="width: 17%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); z-index:10; "></div>
+	  <md-content flex class="h100" content-size>
+	      <div ui-view="toolbar"></div>
+	      <div ui-view class="contentPortal"></div>
+	  </md-content>
+	</section>
+</md-content>

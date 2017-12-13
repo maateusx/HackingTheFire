@@ -1,0 +1,155 @@
+<div class="content">
+
+  <div ng-show="occurencyStep == 0" style="padding-left: 25px;" layout="row" layout-wrap>
+    <md-card ng-show="showInfo" style="width: 96%" layout="column" layout-aling="center center">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Bem Vindo Bombeiro, Você Pode Salvar Vidas!</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content style="padding: 10px 35px">
+        <img src="assets/images/brasao.png" width="100" style="float: right">
+        <p>
+          Selecione o tipo de ocorrência e preencha os principais dados para o resgaste.
+        </p>
+        <p>
+          Você pode registrar uma ocorrência e atualizar seus dados em tempo real ao resgate.
+        </p>
+        <p>
+          Você também pode indicar acompanhamento médico à um resgate.
+        </p>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="closeInfo(1)">Não mostre mais</md-button>
+        <md-button ng-click="closeInfo(2)">Entendi</md-button>
+      </md-card-actions>
+    </md-card>
+
+    <md-card class="occurency-card" ng-repeat="occurrency in occurencyTypes" ng-click="initOccurency(occurrency.type)" title="{{occurrency.title}}">
+      <md-card-title style="background-color: {{occurrency.color}}; padding: 14px 16px 16px;" layout="column" layout-align="center center" class="occurencyIcons">
+        <ng-md-icon icon="{{occurrency.icon}}" style="fill: #fff;"></ng-md-icon>
+        <md-card-title-text layout="row" layout-align="center center" >
+          <span class="md-headline" style="color: #fff">{{occurrency.title}}</span>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </div>
+  
+  <div ng-show="occurencyStep == 1">
+    
+    <md-card class="md-no-momentum" style="padding: 20px;">
+
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="person" class="occurrencyIcon"></ng-md-icon>Nome</label>
+            <input ng-model="newOccurency.user.name" type="text" ng-enter="createOccurency()">
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="phone" class="occurrencyIcon"></ng-md-icon>Telefone</label>
+            <input ng-model="newOccurency.user.phone" type="tel" ng-enter="createOccurency()" mask="(99) 9?9999-9999">
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="person" class="occurrencyIcon"></ng-md-icon>Genêro</label>
+            <md-select ng-model="newOccurency.user.gender">
+              <md-option value="">Não Especificado</md-option>
+              <md-option value="FEMININO">Feminino</md-option>
+              <md-option value="MASCULINO">Masculino</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="person" class="occurrencyIcon"></ng-md-icon>Idade</label>
+            <input ng-model="newOccurency.user.age" type="tel" ng-enter="createOccurency()">
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="healing" class="occurrencyIcon"></ng-md-icon>Grau Da Ocorrência</label>
+            <md-select ng-model="newOccurency.priority">
+              <md-option value="">Não Especificado</md-option>
+              <md-option value="0">Grau 0</md-option>
+              <md-option value="1">Grau 1</md-option>
+              <md-option value="2">Grau 2</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
+      
+
+      <input ng-show="false" ng-model="userAddress" type="text" googleplace>
+      <div layout="row">
+        <div flex="60" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="location_on" class="occurrencyIcon"></ng-md-icon>Endereço*</label>
+            <input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="myScopeVar" required="" />
+          </md-input-container>
+        </div>
+        <div flex="40" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="room" class="occurrencyIcon"></ng-md-icon>Complemento</label>
+            <input ng-model="newOccurency.address.complete" type="text" ng-enter="createOccurency()">
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex="60" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label><ng-md-icon icon="person_pin" class="occurrencyIcon"></ng-md-icon>Descrição do Ocorrido</label>
+            <textarea ng-model="newOccurency.user.complaint" rows="4"></textarea>
+          </md-input-container>
+        </div>
+        <div flex="40" class="occurencyInputs">
+          <md-input-container class="md-block">
+            <label><ng-md-icon icon="mode_comment" class="occurrencyIcon"></ng-md-icon>Comentários</label>
+            <textarea ng-model="newOccurency.comment" rows="4" md-select-on-focus></textarea>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <!-- <div flex="60">
+          <md-input-container class="md-block">
+            <md-checkbox name="tos" ng-model="newOccurency.medical2">
+              Necessidade de Ambulancia?
+            </md-checkbox>
+          </md-input-container>
+        </div> -->
+        <div flex="40">
+          <md-input-container class="md-block">
+            <md-checkbox name="tos" ng-model="newOccurency.medical">
+              Necessidade de Acompanhamento Médico?
+            </md-checkbox>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row" layout-align="center center">
+        <div flex>
+          <button ng-click="backOccurency()" class="occurencyButton" style="background-color: #F44336">CANCELAR</button>
+        </div>
+        <div flex>
+          <button ng-click="endOccurency()" class="occurencyButton" style="background-color: #673AB7">FINALIZAR</button>
+        </div>
+        <div flex>
+          <button ng-click="createOccurency()" class="occurencyButton" style="background-color: #3F51B5">CONFIRMAR</button>
+        </div>
+      </div>
+      
+    </md-card>
+
+  </div>
+
+
+</div>
+
+

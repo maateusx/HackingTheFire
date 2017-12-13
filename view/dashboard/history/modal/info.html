@@ -1,0 +1,137 @@
+<md-dialog aria-label="Informações" style="border-radius:0px" ng-cloak>
+  <form name="qrcommandForm">
+    <md-toolbar style="background: #F44336;color:white;">
+      <div class="md-toolbar-tools">
+        <h2>Ocorrência finalizada com sucesso</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <img src="/assets/images/icons/delete_white.png" style="width:25px">
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-progress-linear md-mode="indeterminate" ng-show="loading"></md-progress-linear>
+    <md-dialog-content layout-padding style="width:500px;padding:20px;padding-bottom:0px" layout="column">
+      <div flex="100" layout="row">
+        <div layout="column" layout-aling="end center" style="text-align: right;color:#666;font-size:12px">
+          <div>{{selectedInfo.finishedDate | date:"dd MMM"}}</div>
+          <div>{{selectedInfo.finishedDate | date:"hh:MM"}}h</div>
+        </div>
+        <div layout="column" layout-align="center center" style="margin:0px 10px;">
+          <div style="width: 20px;height:20px;border-radius:50%;border:4px solid {{$index == 0 ? '#00B1DE':'#666'}};"></div>
+          <div flex style="width: 2px;background:#666;"></div>
+        </div>
+        <div flex style="padding-bottom: 20px">
+          <div style="font-size: 20px">Fim</div>
+          <div style="text-transform: capitalize;color:#00B1DE;font-weight: bold">Ocorrência finalizada com sucesso</div>
+        </div>
+      </div>
+      <div flex="100" layout="row">
+        <div layout="column" layout-aling="end center" style="text-align: right;color:#666;font-size:12px">
+          <div>{{selectedInfo.attendedDate | date:"dd MMM"}}</div>
+          <div>{{selectedInfo.attendedDate | date:"hh:MM"}}h</div>
+        </div>
+        <div layout="column" layout-align="center center" style="margin:0px 10px;">
+          <div style="width: 20px;height:20px;border-radius:50%;border:4px solid {{$index == 0 ? '#00B1DE':'#666'}};"></div>
+          <div flex style="width: 2px;background:#666;"></div>
+        </div>
+        <div flex style="padding-bottom: 20px">
+          <div style="font-size: 20px">Em atendimento</div>
+          <div style="text-transform: capitalize;color:#00B1DE;font-weight: bold">Ocorrência entrou em atendimento</div>
+        </div>
+      </div>
+      <div flex="100" layout="row">
+        <div layout="column" layout-aling="end center" style="text-align: right;color:#666;font-size:12px">
+          <div>{{selectedInfo.creationAt | date:"dd MMM"}}</div>
+          <div>{{selectedInfo.creationAt | date:"hh:MM"}}h</div>
+        </div>
+        <div layout="column" layout-align="center center" style="margin:0px 10px;">
+          <div style="width: 20px;height:20px;border-radius:50%;border:4px solid {{$index == 0 ? '#00B1DE':'#666'}};"></div>
+          <div flex style="width: 2px;background:#666;"></div>
+        </div>
+        <div flex style="padding-bottom: 20px">
+          <div style="font-size: 20px">Inicio</div>
+          <div style="text-transform: capitalize;color:#00B1DE;font-weight: bold">Registro da ocorrência no sistema</div>
+        </div>
+      </div>
+      <h2>Dados da Ocorrência:</h2>
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Nome</label>
+            <input ng-model="selectedInfo.user.name" type="text" disabled>
+
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Telefone</label>
+            <input ng-model="selectedInfo.user.phone" type="text" disabled>
+          </md-input-container>
+        </div>
+      </div>
+      <div layout="row">
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Genêro</label>
+            <input ng-model="selectedInfo.user.gender" type="text" disabled>
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Idade</label>
+            <input ng-model="selectedInfo.user.age" type="text" disabled>
+          </md-input-container>
+        </div>
+        <div flex class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Gravidade</label>
+            <input ng-model="selectedInfo.priority" type="text" disabled>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex="60" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Endereço*</label>
+            <input type="text" ng-model="selectedInfoAddress" disabled/>
+          </md-input-container>
+        </div>
+        <div flex="40" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Complemento</label>
+            <input ng-model="selectedInfo.address.complete" type="text" disabled>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex="60" class="occurencyInputs">
+          <md-input-container class="md-icon-float md-block">
+            <label>Descrição do Ocorrido</label>
+            <textarea ng-model="selectedInfo.user.complaint" rows="4" disabled></textarea>
+          </md-input-container>
+        </div>
+        <div flex="40" class="occurencyInputs">
+          <md-input-container class="md-block">
+            <label>Comentários</label>
+            <textarea ng-model="selectedInfo.comment" rows="4" disabled></textarea>
+          </md-input-container>
+        </div>
+      </div>
+
+      <div layout="row">
+        <div flex="40">
+          <h4 ng-show="selectedInfo.medical">Houve Necessidade de Acompanhamento Médico</h4>
+          <h4 ng-show="!selectedInfo.medical">Não Houve Necessidade de Acompanhamento Médico</h4>
+        </div>
+      </div>
+      
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="close()" style="color: #fff; background-color: #F44336">Fechar</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+

@@ -1,0 +1,140 @@
+<div layout="column" class="relative" layout-fill role="main" style="padding-top: 10px;">
+     
+      <md-content layout="row" style="margin-top: 60px;  background-color: transparent">
+          <md-card flex="50" md-theme="default" align="center" style="background-color: #E91E63; color: #fff;">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Chamados Abertos</span>
+              </md-card-title-text>
+            </md-card-title>
+            <div layout="row" layout-align="center start" style="padding-right: 25px; font-size: 60px">
+              {{countOccurences}}
+            </div >
+          </md-card>
+
+          <md-card flex="50" md-theme="default" align="center" style="background-color: #2196F3; color: #fff;">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Recursos Disponiveis</span>
+              </md-card-title-text>
+            </md-card-title>
+            <div layout="row" layout-align="center start" style="padding-right: 25px; font-size: 60px">
+              {{firetruck.length}}
+            </div>
+          </md-card>
+      </md-content>
+
+      <md-card>
+        <h1 style="padding-left: 20px">Chamados Abertos</h1>
+        <md-table-container>
+          <table md-table  multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="reorder">
+              <tr md-row >
+                <th md-column><span>Tipo</span></th>
+
+                <th md-column><span>Observação</span></th>
+                <th md-column><span>Status</span></th>
+                <th md-column><span>Recursos</span></th>
+                <th md-column><span>Endereço</span></th>
+                <th md-column><span>Em aberto</span></th>
+                <th md-column md-numeric md-order-by="priority" style="min-width: 100px"><span>Prioridade</span></th>
+
+                <th md-column style="min-width: 80px; text-align: right">Opções</th>
+              </tr>
+            </thead>
+            
+            <tbody md-body>
+              <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="occurence in openOccurences">
+                <td md-cell style="width: 20px">
+                  <span ng-if="occurence.type == 'FIRE'">
+                    Incêndio
+                  </span>
+                  <span ng-if="occurence.type == 'CRASH'">
+                    Acidente de carro
+                  </span>
+                  <span ng-if="occurence.type == 'HOME'">
+                    Residencial
+                  </span>
+                </td>
+                <td md-cell ng-click="openCategory(category)">
+                  {{occurence.comment}}
+                </td>
+                <td md-cell ng-click="openCategory(category)">
+                    
+                    <md-card ng-if="occurence.status == 'ATTENDING'" style="background: #f1c40f ;color:#FFF;padding: 2px 2px;">
+                        <span align="center">
+                          Em atendimento
+                        </span>
+                    </md-card>
+                    <md-card ng-if="occurence.status == 'PENDING'" style="background: #f44336 ;color:#FFF;padding: 2px 2px;">
+                        <span align="center">
+                          Pendente
+                        </span>
+                    </md-card>
+                    <md-card ng-if="occurence.status == 'CHECKEDIN'" style="background: #4CAF50 ;color:#FFF;padding: 2px 2px;">
+                        <span align="center">
+                          Checkin no local
+                        </span>
+                    </md-card>
+                    <md-card ng-if="occurence.status == 'CHECKEDOUT'" style="background: #3498db ;color:#FFF;padding: 2px 2px;">
+                        <span align="center">
+                          Checkout do local
+                        </span>
+                    </md-card>
+                </td>
+                <td md-cell>
+                  <span ng-repeat="firetruck in occurence.firetrucks">
+                    {{firetruck.name}}
+                  </span>
+                  
+                </td>
+                <td md-cell>
+                  {{occurence.address.street}}, {{occurence.address.number}} - {{occurence.address.city}}
+                </td>
+                <td md-cell ng-click="openCategory(category)">
+                  <timer start-time="occurence.createdDateTime">{{days}}d, {{hours}}h:{{minutes}}m:{{seconds}}s</timer>
+                </td>
+                <td md-cell ng-click="openCategory(category)">
+                  <div layout="row" layout-align="center center" style="padding-left: 50px;">
+                    <div flex="33" ng-click="changePriority(occurence._id, 0)" style="background: {{occurence.priority == 0 ? '#01579B; color: #fff;': '#fff; color: #000;'}};
+  border-top-left-radius: 4px; border-bottom-left-radius: 4px; height: 25px; border: 1px solid #01579B;"  layout="row" layout-align="center center">
+                      0
+                    </div>
+
+                    <div flex="33" ng-click="changePriority(occurence._id, 1)" style="background: {{occurence.priority == 1 ? '#01579B; color: #fff;': '#fff; color: #000;'}}height: 25px; border-top: 1px solid #01579B; border-bottom: 1px solid #01579B" layout="row" layout-align="center center">
+                      1
+                    </div>
+
+                    <div flex="33" ng-click="changePriority(occurence._id, 2)" style="background: {{occurence.priority == 2 ? '#01579B; color: #fff;': '#fff; color: #000;'}} border-top-right-radius: 4px; border-bottom-right-radius: 4px; height: 25px;border: 1px solid #01579B;" layout="row" layout-align="center center">
+                      2
+                    </div>
+                  </div>
+                </td>
+
+               
+                <td md-cell style="text-align: right">
+                  <button style="border:none;background:none" title="Editar ocorrência" ng-click="edit(occurence)">
+                    <img src="assets/images/edit.png" style="width:15px">
+                  </button>
+                  <button style="border:none;background:none" title="Destinar recurso" ng-click="send(occurence)">
+                    <img src="assets/images/firetruck.png" style="width:15px">
+                  </button>
+                  <button style="border:none;background:none" title="Finalizar ocorrência" ng-click="remove(occurence)">
+                    <img src="assets/images/checkmark.png" style="width:15px">
+                  </button>
+                </td>
+              </tr>
+              <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-show="categories.length == 0" >
+                <td md-cell colspan="8" align="center" style="height: 50px; text-align: center">
+                  <b>Nenhuma categoria cadastrada.</b>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-page-select md-on-paginate="doPagination" ></md-table-pagination>
+
+  
+      </md-card>
+    </div>

@@ -1,0 +1,71 @@
+<div style="padding: 70px 15px;">
+    <md-card>
+      <md-table-container>
+        <table md-table  multiple ng-model="selected" md-progress="promise">
+          <thead md-head md-order="query.order" md-on-reorder="reorder">
+            <tr md-row>
+              <th md-column><span>Descrição</span></th>
+              <th md-column><span>Observação</span></th>
+              <th md-column><span>Endereço</span></th>
+              <th md-column><span>Em aberto</span></th>
+              <th md-column md-numeric md-order-by="priority" style="min-width: 100px"><span>Prioridade</span></th>
+              <th md-column style="min-width: 80px; text-align: right">Opções</th>
+            </tr>
+          </thead>
+          
+          <tbody md-body>
+            <tr md-row md-select="dessert" md-select-id="name" ng-repeat="occurence in openOccurences">
+              <td md-cell style="width: 20px">
+                {{occurence.user.complaint}}
+              </td>
+              <td md-cell ng-click="openCategory(occurence)">
+                {{occurence.comment}}
+              </td>
+
+              <td md-cell ng-click="openCategory(occurence)">
+                {{occurence.address.complete}}
+              </td>
+              <td md-cell ng-click="openCategory(occurence)">
+                {{occurence.startDate | date: dd/MM/yyyy}}
+              </td>
+              <td md-cell ng-click="openCategory(occurence)">
+                <div layout="row" layout-align="center center" style="padding-left: 50px;">
+                  <div flex="33" style="background: {{occurence.priority == 0 ? '#01579B; color: #fff;': '#fff; color: #000;'}}; border-top-left-radius: 4px; border-bottom-left-radius: 4px; height: 25px; border: 1px solid #01579B;"  layout="row" layout-align="center center">
+                    0
+                  </div>
+
+                  <div flex="33" style="background: {{occurence.priority == 1 ? '#01579B; color: #fff;': '#fff; color: #000;'}}height: 25px; border-top: 1px solid #01579B; border-bottom: 1px solid #01579B" layout="row" layout-align="center center">
+                    1
+                  </div>
+
+                  <div flex="33" style="background: {{occurence.priority == 2 ? '#01579B; color: #fff;': '#fff; color: #000;'}} border-top-right-radius: 4px; border-bottom-right-radius: 4px; height: 25px;border: 1px solid #01579B;" layout="row" layout-align="center center">
+                    2
+                  </div>
+                </div>
+              </td>
+             
+              <td md-cell style="text-align: right">
+                <button style="border:none;background:none" title="Visualizar Informações" ng-click="openOccurenceInfo(occurence)">
+                  <img src="assets/images/edit.png" style="width:15px">
+                </button>
+                <button style="border:none;background:none" title="Abrir Chat" ng-click="openSignals(occurence)">
+                  <img src="assets/images/chat.png" style="width:15px">
+                </button>
+                <button style="border:none;background:none" title="Finalizar ocorrência" ng-click="remove(occurence)">
+                  <img src="assets/images/checkmark.png" style="width:15px">
+                </button>
+              </td>
+            </tr>
+            <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-show="openOccurences.length == 0" >
+              <td md-cell colspan="8" align="center" style="height: 50px; text-align: center; padding: 20px;">
+                <h3>Nenhuma ocorrência registrada.</h3>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+
+      <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-page-select md-on-paginate="doPagination" ></md-table-pagination>
+
+    </md-card>
+</div>  

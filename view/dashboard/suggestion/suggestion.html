@@ -1,0 +1,46 @@
+<div style="padding: 70px 15px;">
+    <md-card>
+        <md-table-container>
+          <table md-table  multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="reorder">
+              <tr md-row >
+                <th md-column><span>Recurso</span></th>
+                <th md-column><span>Mensagem</span></th>
+                <th md-column md-numeric><span>Criada em</span></th>
+                <th md-column md-numeric><span>Opções</span></th>
+              </tr>
+            </thead>
+            
+            <tbody md-body>
+              <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="suggestion in suggestions" style="background-color: #{{suggestion.solved ? 'eaeaea' : 'fff';}}">
+                <td md-cell style="width: 20px">
+                  {{suggestion.firetruck.name}}
+                </td>
+                <td md-cell>
+                  {{suggestion.message}}
+                </td>
+                <td md-cell>
+                  {{suggestion.creationAt | date:"dd/MM - HH:mm"}}
+                </td>
+                <td md-cell style="text-align: right">
+                  <button style="border:none;background:none" title="Solucionar sugestão" ng-click="showConfirm(suggestion._id, suggestion.solved)">
+                    <img src="assets/images/checkmark.png" style="width:15px" ng-hide="suggestion.solved">
+                  </button>
+                </td>
+              </tr>
+              <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-show="suggestions.length == 0" >
+                <td md-cell colspan="4" align="center" style="height: 50px; text-align: center">
+                  <b>Nenhuma sugestão cadastrada.</b>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-page-select md-on-paginate="doPagination" ></md-table-pagination>
+
+  
+      </md-card>
+
+  <md-divider></md-divider>
+</div>

@@ -1,0 +1,73 @@
+<div style="padding: 70px 15px;">
+
+    <md-card>
+        <md-table-container>
+          <table md-table  multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="reorder">
+              <tr md-row >
+                <th md-column><span>Tipo</span></th>
+                <th md-column><span>Observação</span></th>
+                <th md-column><span>Endereço</span></th>
+                <th md-column><span>Criada Em</span></th>
+                <th md-column><span>Atendida em</span></th>
+                <th md-column md-numeric md-order-by="priority" style="min-width: 100px"><span>Prioridade</span></th>
+              </tr>
+            </thead>
+            
+            <tbody md-body>
+              <tr style="cursor:pointer" md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="occurence in closedOccurences" ng-click="openInfo(occurence)">
+                <td md-cell style="width: 20px">
+                  <span ng-if="occurence.type == 'FIRE'">
+                    Incêndio
+                  </span>
+                  <span ng-if="occurence.type == 'CRASH'">
+                    Acidente de carro
+                  </span>
+                  <span ng-if="occurence.type == 'HOME'">
+                    Residencial
+                  </span>
+                  <span ng-if="occurence.type == 'ANIMAL'">
+                    Animal
+                  </span>
+                  <span ng-if="occurence.type == 'ELETRIC'">
+                    Choque Elétrica
+                  </span>
+                  <span ng-if="occurence.type == 'MEDICAL'">
+                    Ocorrência Médica
+                  </span>
+                  <span ng-if="occurence.type == 'GENERAL'">
+                    Geral
+                  </span>
+                </td>
+                <td md-cell>
+                  {{occurence.comment}}
+                </td>
+                <td md-cell>
+                  {{occurence.address.neighborhood}} {{occurence.address.zip}}
+                </td>
+                <td md-cell>
+                  <div>{{occurence.creationAt.substring(0,10)}}</div>
+                </td>
+                <td md-cell>
+                  <div>{{occurence.attendedDate | date: dd/MM/yyyy}}</div>
+                </td>
+                <td md-cell>
+                  {{occurence.priority}}
+                </td>
+              </tr>
+              <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-show="closedOccurences.length == 0" >
+                <td md-cell colspan="8" align="center" style="height: 50px; text-align: center">
+                  <b>Nenhum registro cadastrado.</b>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-page-select md-on-paginate="doPagination" ></md-table-pagination>
+
+  
+      </md-card>
+
+  <md-divider></md-divider>
+</div>

@@ -1,0 +1,30 @@
+.occurency-card {
+   background-position: center;
+   background-size: cover;
+   height: 100px;
+   width: 31%;
+   min-width: 160px;
+   cursor: pointer;
+}
+
+.occurrencyIcon {
+  margin-right: 10px;
+  fill: #666;
+}
+
+.occurencyInputs {
+	padding: 0 10px;
+}
+
+.occurencyButton {
+	border-radius: 5px;
+	background-color: #2980b9;
+	padding: 15px 25px;
+	border: none; color: #fff;
+	width: 90%
+}
+
+.occurencyIcons ng-md-icon svg{
+  height: 50px !important;
+  width: 50px !important;
+}

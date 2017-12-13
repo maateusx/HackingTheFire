@@ -1,0 +1,74 @@
+<md-dialog aria-label="Informações" style="border-radius:0px" ng-cloak>
+  <form name="qrcommandForm">
+    <md-toolbar style="background: #F44336;color:white;">
+      <div class="md-toolbar-tools">
+        <h2>Ocorrência Finalizada com Sucesso!</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <img src="/assets/images/icons/delete_white.png" style="width:25px">
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-progress-linear md-mode="indeterminate" ng-show="loading"></md-progress-linear>
+    <md-dialog-content layout-padding style="width:500px;padding:20px;padding-bottom:0px" layout="column">
+        <div layout="row">
+          <div flex class="occurencyInputs">
+            <md-input-container class="md-icon-float md-block">
+              <label><ng-md-icon icon="person" class="occurrencyIcon"></ng-md-icon>Nome</label>
+              <input ng-model="selectedOccurency.user.name" type="text" ng-enter="createOccurency()">
+            </md-input-container>
+          </div>
+          <div flex class="occurencyInputs">
+            <md-input-container class="md-icon-float md-block">
+              <label><ng-md-icon icon="phone" class="occurrencyIcon"></ng-md-icon>Telefone</label>
+              <input ng-model="selectedOccurency.user.phone" type="tel" ng-enter="createOccurency()" mask="(99) 9?9999-9999">
+            </md-input-container>
+          </div>
+        </div>
+
+        <div layout="row">
+          <div flex="60" class="occurencyInputs">
+            <md-input-container class="md-icon-float md-block">
+              <label><ng-md-icon icon="person_pin" class="occurrencyIcon"></ng-md-icon>Descrição do Ocorrido</label>
+              <textarea ng-model="selectedOccurency.user.complaint" rows="4"></textarea>
+            </md-input-container>
+          </div>
+          <div flex="40" class="occurencyInputs">
+            <md-input-container class="md-block">
+              <label><ng-md-icon icon="mode_comment" class="occurrencyIcon"></ng-md-icon>Observaçeões</label>
+              <textarea ng-model="selectedOccurency.comment" rows="4" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
+        </div>
+        <div layout="row">
+          <div flex>
+            <md-input-container class="md-block">
+              <md-checkbox name="tos" ng-model="selectedOccurency.simple">
+                Não havia necessidade de abrir ocorrência
+              </md-checkbox>
+            </md-input-container>
+          </div>
+          <div flex>
+            <md-input-container class="md-block">
+              <md-checkbox name="tos" ng-model="selectedOccurency.resolved">
+                Ocorrência Resolvida
+              </md-checkbox>
+            </md-input-container>
+          </div>
+          <div flex>
+            <md-input-container class="md-block">
+              <md-checkbox name="tos" ng-model="newOccurency.canceled">
+                Ocorrência Cancelada/Desistiu
+              </md-checkbox>
+            </md-input-container>
+          </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="close()" style="color: #F44336">Fechar</md-button>
+      <md-button ng-click="save()" style="color: #fff; background-color: #F44336">Salvar Alterações</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+

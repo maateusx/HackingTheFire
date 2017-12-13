@@ -1,0 +1,28 @@
+<md-dialog aria-label="Chat" style="border-radius:0px" ng-cloak>
+  <form name="qrcommandForm">
+    <md-toolbar style="background: #F44336; color:white">
+      <div class="md-toolbar-tools">
+        <h2>{{occurence._id}} - {{occurence.username}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="close()">
+          <img src="assets/images/icons.png" style="width:25px">
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-progress-linear md-mode="indeterminate" ng-show="loading"></md-progress-linear>
+    <md-dialog-content layout-padding style="width:500px; padding:20px; padding-bottom:0px" layout="column" layout-align="center start">
+        <div ng-repeat="message in messages">
+          <span ng-show="!message.firetruck" style="color: green; font-weight: bold; text-align: right"><b>Eu - {{message.creationAt | date: 'dd/MM/yyyy HH:mm'}}</b>: {{message.message}}</span>
+          <span ng-show="message.firetruck"><b>{{message.firetruck.name}} - {{message.creationAt | date: 'dd/MM/yyyy HH:mm'}}</b>: {{message.message}}</span>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-align="end center">
+      <md-input-container md-no-float class="md-block" style="width:80%;">
+        <textarea ng-model="message.text" type="text" placeholder="Mensagem..."></textarea> 
+      </md-input-container>
+      <md-button style="background: #F44336; color:white" ng-click="sendMessage()">Enviar</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+

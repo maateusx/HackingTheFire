@@ -1,0 +1,20 @@
+<div class="resourceContent" layout="column" layout-align="center center">
+	<div layout="row" style="width:92%; height:150px; margin:10px 0px">
+		<md-card flex layout="column" layout-align="center center" class="resourceCard" style="background-color: #F44336;">
+			<div>Recursos Disponiveis</div>
+			<div>{{trucksNumber.avaible}}</div>
+		</md-card>
+		<md-card flex layout="column" layout-align="center center" class="resourceCard" style="background-color: #3F51B5;">
+			<div>Recursos em Atendimento</div>
+			<div>{{trucksNumber.busy}}</div>
+		</md-card>
+		<md-card flex layout="column" layout-align="center center" class="resourceCard" style="background-color: #E91E63;">
+			<div>Recursos Desligados</div>
+			<div>{{trucksNumber.offline}}</div>
+		</md-card>
+	</div>
+
+    <md-card ng-show="!showSecondaryGraph" class="resourceMap">
+    	<div id="map" class="hw100"></div>
+    </md-card>
+</div>

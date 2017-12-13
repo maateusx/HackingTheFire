@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="fireman">
+<head>
+    
+    <title>Bombeiros - Dashboard</title>
+
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#01579B">
+
+    <!-- FAV ICON -->
+    <link rel="icon" type="image/png" href="assets/images/fav.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/angular-material.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/md-data-table.min.css">
+    <link rel="stylesheet" href="view/dashboard/occurency/occurency.css">
+
+</head>
+
+<body>
+    <!-- Preloading -->
+    <div ng-show="1 == 0" class="loadingDot1">
+        <div class="loadingDot2">
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading  -->
+    <div ng-cloak ng-show="isLoading" class="customLoading" layout="column" layout-align="center center">
+        <div layout="row" layout-align="center center" aria-label="loading">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </div>
+    
+    <!-- Views -->
+    <div class="hw100" ui-view></div>
+</body>
+
+    <!-- Library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrSoGve0HfHbsavDTmYf6wq8jdo5LC75M&libraries=places&libraries=visualization"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-animate.min.js"></script>
+    <script src="assets/js/angular-aria.min.js"></script>
+    <script src="assets/js/angular-material.min.js"></script>
+    <script src="assets/js/angular-ui-router.min.js"></script>
+    
+    <script src="assets/js/socket.io-1.2.0.js"></script>
+    <script src="assets/js/angular-material-icons.min.js"></script> 
+    <script src="assets/js/ngMask.min.js"></script>
+    <script src="assets/js/autocomplete.js"></script>
+    <script src="assets/js/md-data-table.min.js"></script>
+    <script src="assets/js/angular-timer.min.js"></script>
+    <script src="assets/js/humanize-duration.js"></script>
+
+    <script src="view/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="view/dashboard/components/sidebar/sidebar.controller.js"></script>
+    <script src="view/dashboard/components/toolbar/toolbar.controller.js"></script>
+    <script src="view/dashboard/components/chat/chat.controller.js"></script>
+
+    <script src="view/auth/auth.config.js"></script> 
+    <script src="view/auth/login/login.controller.js"></script>
+
+    <script src="view/dashboard/dashboard.config.js"></script>
+    <script src="view/dashboard/home/home.controller.js"></script>
+    <script src="view/dashboard/office/office.controller.js"></script>
+    <script src="view/dashboard/occurency/occurency.controller.js"></script>
+    <script src="view/dashboard/doctor/doctor.controller.js"></script>
+    <script src="view/dashboard/history/history.controller.js"></script>
+    <script src="view/dashboard/report/report.controller.js"></script>
+    <script src="view/dashboard/resource/resource.controller.js"></script>
+    <script src="view/dashboard/suggestion/suggestion.controller.js"></script>
+
+
+</html>
